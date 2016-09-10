@@ -217,8 +217,8 @@ namespace ARMA_FOV_Changer
 
         private void saveButton_Click(object sender, RoutedEventArgs e)
         {
-            arrLine[fovTopLine - 1] = "fovTop=" + DesiredFovTopTextBox.Text + ";";
-            arrLine[fovLeftLine - 1] = "fovLeft=" + DesiredFovLeftTextBox.Text + ";";
+            arrLine[fovTopLine] = "fovTop=" + DesiredFovTopTextBox.Text + ";";
+            arrLine[fovLeftLine] = "fovLeft=" + DesiredFovLeftTextBox.Text + ";";
 
             try
             {

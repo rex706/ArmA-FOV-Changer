@@ -4,9 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ARMA_FOV_Changer"
-        mc:Ignorable="d" Height="434.272" Width="328.769" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="Eye-Visible-512.ico">
+        mc:Ignorable="d" Height="271.594" Width="478" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="Eye-Visible-512.ico" Background="#FFCDCDCD" Foreground="{x:Null}">
     <Grid>
-        <Button x:Name="Arma2OAButton" Margin="17,23,0,0" Width="286" Height="175" BorderBrush="{x:Null}" Foreground="{x:Null}" BorderThickness="0" UseLayoutRounding="True" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" Click="Arma2OAButton_Click">
+        <Button x:Name="Arma2OAButton" Margin="10,3,0,0" Width="220" Height="220" BorderBrush="{x:Null}" Foreground="{x:Null}" BorderThickness="0" UseLayoutRounding="True" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" Click="Arma2OAButton_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="VerticalContentAlignment" Value="Stretch"/>
@@ -16,11 +16,11 @@
                             <ControlTemplate TargetType="Button">
                                 <Grid Background="{TemplateBinding Background}">
                                     <Rectangle Fill="Transparent"/>
-                                    <Image x:Name="img" Width="286" Height="175" Source="armaiioa-logo.png"/>
+                                    <Image x:Name="img" Width="220" Height="220" Source="arma_2___icon_by_blagoicons-d9ykomv.png"/>
                                 </Grid>
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter TargetName="img" Property="Source" Value="armaiioa-logo_glow.png"/>
+                                        <Setter TargetName="img" Property="Source" Value="arma_2___icon_by_blagoicons-d9ykomv_glow.png"/>
                                     </Trigger>
                                 </ControlTemplate.Triggers>
                             </ControlTemplate>
@@ -29,7 +29,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button x:Name="Arma3Button" Margin="10,202,0,0" Width="300" Height="200" BorderBrush="{x:Null}" Foreground="{x:Null}" BorderThickness="0" UseLayoutRounding="True" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" Click="Arma3Button_Click">
+        <Button x:Name="Arma3Button" Margin="235,3,0,0" Width="220" Height="220" BorderBrush="{x:Null}" Foreground="{x:Null}" BorderThickness="0" UseLayoutRounding="True" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" Click="Arma3Button_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="VerticalContentAlignment" Value="Stretch"/>
@@ -39,11 +39,11 @@
                             <ControlTemplate TargetType="Button">
                                 <Grid Background="{TemplateBinding Background}">
                                     <Rectangle Fill="Transparent"/>
-                                    <Image x:Name="img" Width="300" Height="200" Source="ArmA_3_Logo.png"/>
+                                    <Image x:Name="img" Width="220" Height="220" Source="arma_3___icon_by_blagoicons-d9ykouy.png"/>
                                 </Grid>
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter TargetName="img" Property="Source" Value="ArmA_3_Logo_glow.png"/>
+                                        <Setter TargetName="img" Property="Source" Value="arma_3___icon_by_blagoicons-d9ykouy_glow.png"/>
                                     </Trigger>
                                 </ControlTemplate.Triggers>
                             </ControlTemplate>

@@ -121,6 +121,18 @@
   <ItemGroup>
     <Resource Include="Eye-Visible-512.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="arma_2___icon_by_blagoicons-d9ykomv.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="arma_2___icon_by_blagoicons-d9ykomv_glow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="arma_3___icon_by_blagoicons-d9ykouy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="arma_3___icon_by_blagoicons-d9ykouy_glow.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
