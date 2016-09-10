@@ -137,22 +137,23 @@ namespace ARMA_FOV_Changer
             string fovTop = null;
             string fovLeft = null;
 
-            if (splashWindow.buttonPressed == 1)
-            {
-                fovTopLine = 409;
-                fovLeftLine = 410;
-            }
-            else if (splashWindow.buttonPressed == 2)
-            {
-                fovTopLine = 549;
-                fovLeftLine = 550;
-            }
-
             // Read entire file into an array of strings
             // Get info we want from desired lines
             arrLine = File.ReadAllLines(profilePath);
-            fovTop = arrLine[fovTopLine - 1];
-            fovLeft = arrLine[fovLeftLine - 1];
+
+            for(int i = 0; i < arrLine.Length; i++)
+            {
+                if (arrLine[i].Contains("fovTop"))
+                {
+                    fovTopLine = i;
+                    fovLeftLine = i + 1;
+
+                    break;
+                }
+            }
+
+            fovTop = arrLine[fovTopLine];
+            fovLeft = arrLine[fovLeftLine];
 
             int eqIdx = fovTop.IndexOf("=") + 1;
             int fovLen = fovTop.IndexOf(";") - eqIdx;

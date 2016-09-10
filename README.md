@@ -4,7 +4,7 @@
 
 ![alt tag](http://i.imgur.com/iYsZyFJ.png)   ![alt tag](http://i.imgur.com/PRPR79w.png)
 
-[**Download**](https://drive.google.com/file/d/0B2byNRcR0k4vOHNrUjB0M2hWZG8/view?usp=sharing)
+[**Download**](https://drive.google.com/open?id=0B2byNRcR0k4vbTVaVTFpWFhJMXM)
 
 **Features**
 
