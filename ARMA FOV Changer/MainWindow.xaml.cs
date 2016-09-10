@@ -193,7 +193,7 @@ namespace ARMA_FOV_Changer
                         if (answer == MessageBoxResult.Yes)
                         {
                             //TODO: Later on, remove this and replace with automated process of downloading new binaries.
-                            Process.Start("https://github.com/rex706/SAM");
+                            Process.Start("https://github.com/rex706/ARMA-FOV-Changer/");
 
                             //Update is available, and user wants to update. Requires app to close.
                             return 2;
@@ -236,7 +236,7 @@ namespace ARMA_FOV_Changer
         }
         private void GitMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("https://github.com/rex706/SAM");
+            Process.Start("https://github.com/rex706/ARMA-FOV-Changer/");
         }
         private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
         {
