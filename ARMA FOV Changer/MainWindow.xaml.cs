@@ -223,7 +223,7 @@ namespace ARMA_FOV_Changer
                 {
                     System.Version current = Assembly.GetExecutingAssembly().GetName().Version;
                     StreamReader reader = new StreamReader(stream);
-                    latest = System.Version.Parse(reader.ReadToEnd());
+                    latest = System.Version.Parse(reader.ReadLine());
 
                     List<string> newFiles = new List<string>();
 
