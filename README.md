@@ -2,7 +2,7 @@
 
 **Easily change your field of view for Arma, Arma 2, Arma 3, and DayZ!**
 
-![alt tag](http://i.imgur.com/Jt4ykgV.png)   ![alt tag](http://i.imgur.com/40HWRCN.png)
+![alt tag](http://i.imgur.com/2FMY0Dh.png)   ![alt tag](http://i.imgur.com/40HWRCN.png)
 
 
 [**Download**](https://drive.google.com/open?id=0B2byNRcR0k4vVm90NFB0azJMaVk)
