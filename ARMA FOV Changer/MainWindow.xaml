@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ARMA_FOV_Changer"
         mc:Ignorable="d"
-        Title="ArmA FOV Changer" Height="305" Width="478" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Visibility="Visible" Background="#FFF1F1F1" Icon="Eye-Visible-512.ico" BorderBrush="#FF494949">
+        Title="Field of Views" Height="305" Width="478" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Visibility="Visible" Background="#FFF1F1F1" Icon="Eye-Visible-512.ico" BorderBrush="#FF494949">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="29*"/>

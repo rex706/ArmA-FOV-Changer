@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows;
 
 namespace ARMA_FOV_Changer
@@ -46,10 +47,7 @@ namespace ARMA_FOV_Changer
         
             // Get the selected file name and display in a TextBox 
             if (result == true)
-            {
-                // Open document 
                 filename = dlg.FileName;
-            }
 
             Close();
         }
@@ -71,10 +69,61 @@ namespace ARMA_FOV_Changer
 
             // Get the selected file name and display in a TextBox 
             if (result == true)
-            {
-                // Open document 
                 filename = dlg.FileName;
-            }
+
+            Close();
+        }
+
+        private void DayZButton_Click(object sender, RoutedEventArgs e)
+        {
+            button = 3;
+
+            // Create OpenFileDialog 
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+            // Set filter for file extension and initial directory
+            dlg.DefaultExt = ".DayZProfile";
+            dlg.Filter = "DayZ Profile (*.DayZProfile)|*.DayZProfile";
+            dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\DayZ";
+
+            // Display OpenFileDialog by calling ShowDialog method 
+            Nullable<bool> result = dlg.ShowDialog();
+
+            // Get the selected file name and display in a TextBox 
+            if (result == true)
+                filename = dlg.FileName;
+
+            Close();
+        }
+
+        private void ArmaCWQAButton_Click(object sender, RoutedEventArgs e)
+        {
+            button = 0;
+
+            // Create OpenFileDialog 
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+            string primary = @"C:\Program Files (x86)\Steam\steamapps\common\ARMA Cold War Assault\Users";
+            string secondary = @"D:\Program Files (x86)\Steam\steamapps\common\ARMA Cold War Assault\Users";
+            string tertiary = @"E:\Program Files (x86)\Steam\steamapps\common\ARMA Cold War Assault\Users";
+
+            // Set filter for file extension and initial directory
+            dlg.DefaultExt = ".cfg";
+            dlg.Filter = "UserInfo (*.cfg)|*.cfg";
+
+            if (Directory.Exists(primary))
+                dlg.InitialDirectory = primary;
+            else if(Directory.Exists(secondary))
+                dlg.InitialDirectory = secondary;
+            else if (Directory.Exists(tertiary))
+                dlg.InitialDirectory = tertiary;
+
+            // Display OpenFileDialog by calling ShowDialog method 
+            Nullable<bool> result = dlg.ShowDialog();
+
+            // Get the selected file name and display in a TextBox 
+            if (result == true)
+                filename = dlg.FileName;
 
             Close();
         }

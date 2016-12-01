@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARMA FOV Changer", "ARMA FOV Changer\ARMA FOV Changer.csproj", "{B5F384FB-64FE-497C-90B3-5DC5546DDA96}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Field of Views", "ARMA FOV Changer\Field of Views.csproj", "{B5F384FB-64FE-497C-90B3-5DC5546DDA96}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

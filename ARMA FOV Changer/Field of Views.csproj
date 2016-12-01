@@ -7,8 +7,8 @@
     <ProjectGuid>{B5F384FB-64FE-497C-90B3-5DC5546DDA96}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ARMA_FOV_Changer</RootNamespace>
-    <AssemblyName>ARMA FOV Changer</AssemblyName>
+    <RootNamespace>FieldOfViews</RootNamespace>
+    <AssemblyName>Field of Views</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -107,31 +107,31 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="armaiioa-logo_glow.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="armaiioa-logo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="ArmA_3_Logo.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="ArmA_3_Logo_glow.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Eye-Visible-512.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="arma_2___icon_by_blagoicons-d9ykomv.png" />
+    <Resource Include="a2icon_glow.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="arma_2___icon_by_blagoicons-d9ykomv_glow.png" />
+    <Resource Include="a2icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="arma_3___icon_by_blagoicons-d9ykouy.png" />
+    <Resource Include="a3icon_glow.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="arma_3___icon_by_blagoicons-d9ykouy_glow.png" />
+    <Resource Include="a3icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="dayzicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="acwaicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="acwaicon_glow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="dayzicon_glow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
