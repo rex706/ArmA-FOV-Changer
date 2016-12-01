@@ -20,6 +20,7 @@
                 </MenuItem>
                 <MenuItem Header="Help">
                     <MenuItem Header="GitHub" Click="GitMenuItem_Click" />
+                    <Separator />
                 </MenuItem>
             </Menu>
         </DockPanel>

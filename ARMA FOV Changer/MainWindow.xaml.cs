@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace ARMA_FOV_Changer
 {
@@ -40,11 +41,16 @@ namespace ARMA_FOV_Changer
 
         private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-
             #region Initial Update Check
 
             // Verion number from assembly
             string AssemblyVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+
+            MenuItem ver = new MenuItem();
+            MenuItem newExistMenuItem = (MenuItem)this.FileMenu.Items[1];
+            ver.Header = "v" + AssemblyVersion;
+            ver.IsEnabled = false;
+            newExistMenuItem.Items.Add(ver);
 
             try
             {
@@ -110,8 +116,17 @@ namespace ARMA_FOV_Changer
             // Get profile name from file path string
             int lastSlashIdx = profilePath.LastIndexOf("\\") + 1;
             int profNameLength = profilePath.LastIndexOf(".") - lastSlashIdx;
+            
+            int cwSlashIdx = lastSlashIdx > 0 ? profilePath.LastIndexOf("\\", lastSlashIdx - 2) : -1;
+            int profNameLengthCW = profilePath.LastIndexOf("\\") - cwSlashIdx;
 
-            string profileName = profilePath.Substring(lastSlashIdx, profNameLength);
+            string profileName;
+
+            //Get profile name from either parent directory or selected file.
+            if (splashWindow.buttonPressed == 0)
+                profileName = profilePath.Substring(cwSlashIdx + 1, profNameLengthCW - 1);
+            else
+                profileName = profilePath.Substring(lastSlashIdx, profNameLength);
 
             // DayZ Standalone only uses vertical fov
             if (splashWindow.buttonPressed == 3)

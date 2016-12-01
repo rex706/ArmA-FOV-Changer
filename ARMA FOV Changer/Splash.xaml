@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ARMA_FOV_Changer"
-        mc:Ignorable="d" Height="208.731" Width="466.577" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="Eye-Visible-512.ico" Background="#FFCDCDCD" Foreground="{x:Null}">
+        mc:Ignorable="d" Height="208.731" Width="466.577" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Icon="Eye-Visible-512.ico" Background="#FFF1F1F1" Foreground="{x:Null}">
     <Grid>
         <Button x:Name="ArmaCWQAButton" Margin="18,39,0,0" Width="100" Height="100" BorderBrush="{x:Null}" Foreground="{x:Null}" BorderThickness="0" UseLayoutRounding="True" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}" RenderTransformOrigin="0.5,0.5" Click="ArmaCWQAButton_Click">
             <Button.Style>

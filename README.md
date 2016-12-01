@@ -16,7 +16,12 @@
 
 **CHANGELOG**
 
-Latest: 1.1.0.0
+Latest: 1.1.0.1
+
+* Adjust game window color
+* Fix profile name for Cold War Assault
+
+1.1.0.0
 
 * DayZ Standalone support
 * Arma Cold War Assualt support
