@@ -5,7 +5,7 @@
 ![alt tag](http://i.imgur.com/2FMY0Dh.png)   ![alt tag](http://i.imgur.com/40HWRCN.png)
 
 
-[**Download**](https://drive.google.com/open?id=0B2byNRcR0k4vVm90NFB0azJMaVk)
+[**Download**](https://github.com/rex706/ArmA-FOV-Changer/releases/download/1.1.0.1/Field.of.Views.rar)
 
 **Features**
 
