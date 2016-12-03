@@ -24,8 +24,9 @@ namespace ARMA_FOV_Changer
         private static string profilePath;
         private static string[] arrLine;
 
-        private int fovTopLine;
-        private int fovLeftLine;
+        private static int fovTopLine;
+        private static int fovLeftLine;
+        private static int uiLine;
 
         private static int desiredFov;
         private static string fovstring;
@@ -176,12 +177,13 @@ namespace ARMA_FOV_Changer
                 fovstring = "fovTop";
 
             // Find line that controls fov
-            for(int i = 0; i < arrLine.Length; i++)
+            for (int i = 0; i < arrLine.Length; i++)
             {
                 if (arrLine[i].Contains(fovstring))
                 {
                     fovTopLine = i;
                     fovLeftLine = i + 1;
+                    uiLine = i + 59;
 
                     break;
                 }
@@ -270,6 +272,14 @@ namespace ARMA_FOV_Changer
             if (button != 3)
                 arrLine[fovLeftLine] = "fovLeft=" + DesiredFovLeftTextBox.Text + ";";
 
+            if (button == 0)
+            {
+                arrLine[uiLine] = "uiTopLeftX=" + uiTopLeftXLabel_Copy.Content + ";";
+                arrLine[uiLine + 1] = "uiTopLeftY=" + uiTopLeftYLabel_Copy.Content + ";";
+                arrLine[uiLine + 2] = "uiBottomRightX=" + uiBottomRightXLabel_Copy.Content + ";";
+                arrLine[uiLine + 3] = "uiBottomRightY=" + uiBottomRightYLabel_Copy.Content + ";";
+            }
+
             try
             {
                 // Write back to file
@@ -316,10 +326,11 @@ namespace ARMA_FOV_Changer
             int aspect2 = Int32.Parse(heightTextBox.Text) / nGCD;
             string aspectRatio = aspect1 + ":" + aspect2;
 
-            double uiTopLeftX = 0;
-            double uiTopLeftY = 0;
-            double uiBottomRightX = 1;
-            double uiBottomRightY = 1;
+            // ui variables for Cold War Assault
+            double uiTopLeftX = 0.0;
+            double uiTopLeftY = 0.0;
+            double uiBottomRightX = 1.0;
+            double uiBottomRightY = 1.0;
 
             // If chosen game was Cold War Assault, set up ui scaling based on resolution per http://ofp-faguss.com/files/ofp_aspect_ratio.pdf
             if (button == 0 /*|| button == 4*/)
@@ -416,6 +427,7 @@ namespace ARMA_FOV_Changer
 
         private void ProfileMenuItem_Click(object sender, RoutedEventArgs e)
         {
+            CurrentFovLeftLabel.Content = "";
             fovLeftLabel.IsEnabled = true;
             fovLeftLabel_Copy.IsEnabled = true;
             DesiredFovLeftTextBox.IsEnabled = true;
