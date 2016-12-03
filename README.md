@@ -16,7 +16,7 @@
 
 Latest: 1.2.0.0
 
-* ArmA Armed Assualt support
+* ArmA Armed Assault support
 * Fix UI settings for Cold War Assault
 * Decrement lowest fov to 65°
 
