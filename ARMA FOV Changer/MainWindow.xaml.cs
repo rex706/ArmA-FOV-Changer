@@ -200,7 +200,6 @@ namespace ARMA_FOV_Changer
 
             // Update Labels
             CurrentFovTopLabel.Content = fovTop;
-
             if (button != 3)
                 CurrentFovLeftLabel.Content = fovLeft;
         }
@@ -268,7 +267,7 @@ namespace ARMA_FOV_Changer
         private void saveButton_Click(object sender, RoutedEventArgs e)
         { 
             arrLine[fovTopLine] = fovstring + "=" + DesiredFovTopTextBox.Text + ";";
-            if (button == 3)
+            if (button != 3)
                 arrLine[fovLeftLine] = "fovLeft=" + DesiredFovLeftTextBox.Text + ";";
 
             try
@@ -277,7 +276,7 @@ namespace ARMA_FOV_Changer
                 File.WriteAllLines(profilePath, arrLine);
 
                 CurrentFovTopLabel.Content = DesiredFovTopTextBox.Text;
-                if (button == 3)
+                if (button != 3)
                     CurrentFovLeftLabel.Content = DesiredFovLeftTextBox.Text;
             }
             catch (Exception m)
@@ -311,21 +310,19 @@ namespace ARMA_FOV_Changer
             desiredFov = (int)fovSlider.Value;
             fovLabel.Content = fovSlider.Value.ToString() + "°";
 
+            // Calculate aspect ratio.
             int nGCD = GetGreatestCommonDivisor(Int32.Parse(heightTextBox.Text), Int32.Parse(widthTextBox.Text));
-
             int aspect1 = Int32.Parse(widthTextBox.Text) / nGCD;
             int aspect2 = Int32.Parse(heightTextBox.Text) / nGCD;
-
             string aspectRatio = aspect1 + ":" + aspect2;
 
             double uiTopLeftX = 0;
             double uiTopLeftY = 0;
-
             double uiBottomRightX = 1;
             double uiBottomRightY = 1;
 
             // If chosen game was Cold War Assault, set up ui scaling based on resolution per http://ofp-faguss.com/files/ofp_aspect_ratio.pdf
-            if (button == 0 /*|| button == Armed Assault*/)
+            if (button == 0 /*|| button == 4*/)
             {
                 uiTopLeftXLabel.IsEnabled = true;
                 uiTopLeftYLabel.IsEnabled = true;
@@ -390,6 +387,9 @@ namespace ARMA_FOV_Changer
                         uiTopLeftX = 0.40625;
                         uiBottomRightX = 0.59375;
                         break;
+
+                    default:
+                        break;
                 }
 
                 uiTopLeftXLabel_Copy.Content = uiTopLeftX.ToString();
@@ -402,9 +402,7 @@ namespace ARMA_FOV_Changer
 
             // Desired fov to radians
             double hfovRad = fovSlider.Value * (Math.PI / 180);
-
             double hFoV = 2 * Math.Atan(Math.Tan(hfovRad / 2) * (Double.Parse(heightTextBox.Text) / Double.Parse(widthTextBox.Text)));
-
             hFoV = Math.Ceiling(hFoV * 100) / 100;
 
             DesiredFovTopTextBox.Text = hFoV.ToString();
