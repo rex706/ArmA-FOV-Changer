@@ -39,7 +39,7 @@ namespace ARMA_FOV_Changer
 
             // Set filter for file extension and initial directory
             dlg.DefaultExt = ".ArmA2OAProfile";
-            dlg.Filter = "ArmA 2 Profile (*.ArmA2Profile)|*.ArmA2Profile| ArmA 2 OA Profile (*.ArmA2OAProfile)|*.ArmA2OAProfile|All files (*.*)|*.*";
+            dlg.Filter = "ArmA 2 OA Profile (*.ArmA2OAProfile)|*.ArmA2OAProfile|ArmA 2 Profile (*.ArmA2Profile)|*.ArmA2Profile|All files (*.*)|*.*";
             dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\ArmA 2 Other Profiles";
 
             // Display OpenFileDialog by calling ShowDialog method 

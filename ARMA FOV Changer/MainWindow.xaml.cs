@@ -201,7 +201,7 @@ namespace ARMA_FOV_Changer
             // Update Labels
             CurrentFovTopLabel.Content = fovTop;
 
-            if (button == 3)
+            if (button != 3)
                 CurrentFovLeftLabel.Content = fovLeft;
         }
 
