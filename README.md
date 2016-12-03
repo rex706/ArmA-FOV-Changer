@@ -1,11 +1,9 @@
 # Field of Views
 
-**Easily change your field of view for Arma, Arma 2, Arma 3, and DayZ!**
-
-![alt tag](http://i.imgur.com/2FMY0Dh.png)   ![alt tag](http://i.imgur.com/40HWRCN.png)
+![alt tag](http://i.imgur.com/TiOgsy3.png)  ![alt tag](http://i.imgur.com/OrmuCYP.png)
 
 
-[**Download**](https://github.com/rex706/ArmA-FOV-Changer/releases/download/1.1.0.1/Field.of.Views.rar)
+[**Download**](https://github.com/rex706/ArmA-FOV-Changer/releases/download/1.2.0.0/Field.of.Views.rar)
 
 **Features**
 
@@ -16,7 +14,13 @@
 
 **CHANGELOG**
 
-Latest: 1.1.0.1
+Latest: 1.2.0.0
+
+* ArmA Armed Assualt support
+* Fix UI settings for Cold War Assault
+* Decrement lowest fov to 65°
+
+1.1.0.1
 
 * Adjust game window color
 * Fix profile name for Cold War Assault
@@ -24,7 +28,7 @@ Latest: 1.1.0.1
 1.1.0.0
 
 * DayZ Standalone support
-* Arma Cold War Assualt support
+* ArmA Cold War Assualt support
 * Bundle updater
 
 1.0.0.0

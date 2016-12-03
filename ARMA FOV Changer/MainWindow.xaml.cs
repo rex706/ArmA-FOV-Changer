@@ -332,8 +332,8 @@ namespace ARMA_FOV_Changer
             double uiBottomRightX = 1.0;
             double uiBottomRightY = 1.0;
 
-            // If chosen game was Cold War Assault, set up ui scaling based on resolution per http://ofp-faguss.com/files/ofp_aspect_ratio.pdf
-            if (button == 0 /*|| button == 4*/)
+            // If chosen game was Cold War Assault, set up ui scaling based on aspect ratio per http://ofp-faguss.com/files/ofp_aspect_ratio.pdf
+            if (button == 0)
             {
                 uiTopLeftXLabel.IsEnabled = true;
                 uiTopLeftYLabel.IsEnabled = true;
