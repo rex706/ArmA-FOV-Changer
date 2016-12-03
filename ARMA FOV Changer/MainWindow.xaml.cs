@@ -30,7 +30,7 @@ namespace ARMA_FOV_Changer
         private static int desiredFov;
         private static string fovstring;
 
-        private static bool dayz = false;
+        private static int button;
 
         public MainWindow()
         {
@@ -122,19 +122,20 @@ namespace ARMA_FOV_Changer
 
             string profileName;
 
+            button = splashWindow.buttonPressed;
+
             //Get profile name from either parent directory or selected file.
-            if (splashWindow.buttonPressed == 0)
+            if (button == 0)
                 profileName = profilePath.Substring(cwSlashIdx + 1, profNameLengthCW - 1);
             else
                 profileName = profilePath.Substring(lastSlashIdx, profNameLength);
 
             // DayZ Standalone only uses vertical fov
-            if (splashWindow.buttonPressed == 3)
+            if (button == 3)
             {
                 fovLeftLabel.IsEnabled = false;
                 fovLeftLabel_Copy.IsEnabled = false;
                 DesiredFovLeftTextBox.IsEnabled = false;
-                dayz = true;
             }
 
             // Replace %20 (space char) with an actual space
@@ -169,7 +170,7 @@ namespace ARMA_FOV_Changer
             // Get info we want from desired lines
             arrLine = File.ReadAllLines(profilePath);
 
-            if (dayz)
+            if (button == 3)
                 fovstring = "fov";
             else
                 fovstring = "fovTop";
@@ -200,7 +201,7 @@ namespace ARMA_FOV_Changer
             // Update Labels
             CurrentFovTopLabel.Content = fovTop;
 
-            if (!dayz)
+            if (button == 3)
                 CurrentFovLeftLabel.Content = fovLeft;
         }
 
@@ -267,7 +268,7 @@ namespace ARMA_FOV_Changer
         private void saveButton_Click(object sender, RoutedEventArgs e)
         { 
             arrLine[fovTopLine] = fovstring + "=" + DesiredFovTopTextBox.Text + ";";
-            if (!dayz)
+            if (button == 3)
                 arrLine[fovLeftLine] = "fovLeft=" + DesiredFovLeftTextBox.Text + ";";
 
             try
@@ -276,7 +277,7 @@ namespace ARMA_FOV_Changer
                 File.WriteAllLines(profilePath, arrLine);
 
                 CurrentFovTopLabel.Content = DesiredFovTopTextBox.Text;
-                if (!dayz)
+                if (button == 3)
                     CurrentFovLeftLabel.Content = DesiredFovLeftTextBox.Text;
             }
             catch (Exception m)
@@ -311,7 +312,93 @@ namespace ARMA_FOV_Changer
             fovLabel.Content = fovSlider.Value.ToString() + "°";
 
             int nGCD = GetGreatestCommonDivisor(Int32.Parse(heightTextBox.Text), Int32.Parse(widthTextBox.Text));
-            aspectRatioLabel.Content = string.Format("{0} : {1}", Int32.Parse(widthTextBox.Text) / nGCD, Int32.Parse(heightTextBox.Text) / nGCD);
+
+            int aspect1 = Int32.Parse(widthTextBox.Text) / nGCD;
+            int aspect2 = Int32.Parse(heightTextBox.Text) / nGCD;
+
+            string aspectRatio = aspect1 + ":" + aspect2;
+
+            double uiTopLeftX = 0;
+            double uiTopLeftY = 0;
+
+            double uiBottomRightX = 1;
+            double uiBottomRightY = 1;
+
+            // If chosen game was Cold War Assault, set up ui scaling based on resolution per http://ofp-faguss.com/files/ofp_aspect_ratio.pdf
+            if (button == 0 /*|| button == Armed Assault*/)
+            {
+                uiTopLeftXLabel.IsEnabled = true;
+                uiTopLeftYLabel.IsEnabled = true;
+                uiBottomRightXLabel.IsEnabled = true;
+                uiBottomRightYLabel.IsEnabled = true;
+
+                switch (aspectRatio)
+                {
+                    case "5:4":
+                        uiTopLeftY = 0.03125;
+                        uiBottomRightY = 0.96875;
+                        break;
+
+                    case "16:10":
+                        uiTopLeftX = 0.083333;
+                        uiBottomRightX = 0.916667;
+                        break;
+
+                    case "15:9":
+                        uiTopLeftX = 0.1;
+                        uiBottomRightX = 0.9;
+                        break;
+
+                    case "16:9":
+                        uiTopLeftX = 0.125;
+                        uiBottomRightX = 0.875;
+                        break;
+
+                    case "21:9":
+                        uiTopLeftX = 0.21875;
+                        uiBottomRightX = 0.78125;
+                        break;
+
+                    case "12:3":
+                        uiTopLeftX = 0.333333;
+                        uiBottomRightX = 0.666667;
+                        break;
+
+                    case "15:4":
+                        uiTopLeftX = 0.333333;
+                        uiTopLeftY = 0.03125;
+                        uiBottomRightX = 0.666667;
+                        uiBottomRightY = 0.96875;
+                        break;
+
+                    case "48:10":
+                        uiTopLeftX = 0.361111;
+                        uiBottomRightX = 0.638889;
+                        break;
+
+                    case "45:9":
+                        uiTopLeftX = 0.366667;
+                        uiBottomRightX = 0.633333;
+                        break;
+
+                    case "48:9":
+                        uiTopLeftX = 0.375;
+                        uiBottomRightX = 0.625;
+                        break;
+
+                    case "63:9":
+                        uiTopLeftX = 0.40625;
+                        uiBottomRightX = 0.59375;
+                        break;
+                }
+
+                uiTopLeftXLabel_Copy.Content = uiTopLeftX.ToString();
+                uiTopLeftYLabel_Copy.Content = uiTopLeftY.ToString();
+                uiBottomRightXLabel_Copy.Content = uiBottomRightX.ToString();
+                uiBottomRightYLabel_Copy.Content = uiBottomRightY.ToString();
+            }
+
+            aspectRatioLabel.Content = string.Format("{0} : {1}", aspect1, aspect2);
 
             // Desired fov to radians
             double hfovRad = fovSlider.Value * (Math.PI / 180);
@@ -334,8 +421,19 @@ namespace ARMA_FOV_Changer
             fovLeftLabel.IsEnabled = true;
             fovLeftLabel_Copy.IsEnabled = true;
             DesiredFovLeftTextBox.IsEnabled = true;
-            dayz = false;
+
+            uiTopLeftXLabel.IsEnabled = false;
+            uiTopLeftYLabel.IsEnabled = false;
+            uiBottomRightXLabel.IsEnabled = false;
+            uiBottomRightYLabel.IsEnabled = false;
+
+            uiTopLeftXLabel_Copy.Content = "";
+            uiTopLeftYLabel_Copy.Content = "";
+            uiBottomRightXLabel_Copy.Content = "";
+            uiBottomRightYLabel_Copy.Content = "";
+
             LoadProfile();
+            refreshMath();
         }
 
         private void widthTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)

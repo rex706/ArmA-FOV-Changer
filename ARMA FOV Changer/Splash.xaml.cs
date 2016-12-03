@@ -39,7 +39,7 @@ namespace ARMA_FOV_Changer
 
             // Set filter for file extension and initial directory
             dlg.DefaultExt = ".ArmA2OAProfile";
-            dlg.Filter = "ArmA 2 Profile (*.ArmA2OAProfile)|*.ArmA2OAProfile";
+            dlg.Filter = "ArmA 2 Profile (*.ArmA2Profile)|*.ArmA2Profile| ArmA 2 OA Profile (*.ArmA2OAProfile)|*.ArmA2OAProfile|All files (*.*)|*.*";
             dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\ArmA 2 Other Profiles";
 
             // Display OpenFileDialog by calling ShowDialog method 
@@ -61,7 +61,7 @@ namespace ARMA_FOV_Changer
 
             // Set filter for file extension and initial directory
             dlg.DefaultExt = ".ArmA3Profile";
-            dlg.Filter = "ArmA 3 Profile (*.ArmA3Profile)|*.ArmA3Profile";
+            dlg.Filter = "ArmA 3 Profile (*.ArmA3Profile)|*.ArmA3Profile|All files (*.*)|*.*";
             dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\ArmA 3";
 
             // Display OpenFileDialog by calling ShowDialog method 
@@ -83,7 +83,7 @@ namespace ARMA_FOV_Changer
 
             // Set filter for file extension and initial directory
             dlg.DefaultExt = ".DayZProfile";
-            dlg.Filter = "DayZ Profile (*.DayZProfile)|*.DayZProfile";
+            dlg.Filter = "DayZ Profile (*.DayZProfile)|*.DayZProfile|All files (*.*)|*.*";
             dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\DayZ";
 
             // Display OpenFileDialog by calling ShowDialog method 
@@ -109,7 +109,7 @@ namespace ARMA_FOV_Changer
 
             // Set filter for file extension and initial directory
             dlg.DefaultExt = ".cfg";
-            dlg.Filter = "UserInfo (*.cfg)|*.cfg";
+            dlg.Filter = "UserInfo (*.cfg)|*.cfg|All files (*.*)|*.*";
 
             if (Directory.Exists(primary))
                 dlg.InitialDirectory = primary;
@@ -117,6 +117,28 @@ namespace ARMA_FOV_Changer
                 dlg.InitialDirectory = secondary;
             else if (Directory.Exists(tertiary))
                 dlg.InitialDirectory = tertiary;
+
+            // Display OpenFileDialog by calling ShowDialog method 
+            Nullable<bool> result = dlg.ShowDialog();
+
+            // Get the selected file name and display in a TextBox 
+            if (result == true)
+                filename = dlg.FileName;
+
+            Close();
+        }
+
+        private void ArmaAAButton_Click(object sender, RoutedEventArgs e)
+        {
+            button = 4;
+
+            // Create OpenFileDialog 
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+            // Set filter for file extension and initial directory
+            dlg.DefaultExt = ".ArmAProfile";
+            dlg.Filter = "Arma Profile (*.ArmAProfile)|*.ArmAProfile|All files (*.*)|*.*";
+            dlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\ArmA";
 
             // Display OpenFileDialog by calling ShowDialog method 
             Nullable<bool> result = dlg.ShowDialog();
