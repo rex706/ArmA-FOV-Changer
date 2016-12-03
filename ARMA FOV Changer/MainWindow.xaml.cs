@@ -183,10 +183,17 @@ namespace ARMA_FOV_Changer
                 {
                     fovTopLine = i;
                     fovLeftLine = i + 1;
-                    uiLine = i + 59;
+                    
+                    if (button != 0)
+                        break;
+                }
 
+                if (arrLine[i].Contains("uiTopLeftX"))
+                {
+                    uiLine = i;
                     break;
                 }
+     
             }
 
             fovTop = arrLine[fovTopLine];

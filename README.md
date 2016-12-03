@@ -3,7 +3,7 @@
 ![alt tag](http://i.imgur.com/TiOgsy3.png)  ![alt tag](http://i.imgur.com/OrmuCYP.png)
 
 
-[**Download**](https://github.com/rex706/ArmA-FOV-Changer/releases/download/1.2.0.0/Field.of.Views.rar)
+[**Download**](https://github.com/rex706/ArmA-FOV-Changer/releases/download/1.2.0.1/Field.of.Views.rar)
 
 **Features**
 
@@ -14,7 +14,11 @@
 
 **CHANGELOG**
 
-Latest: 1.2.0.0
+Latest: 1.2.0.1
+
+* Fix Cold War Assault ui line read
+
+1.2.0.0
 
 * ArmA Armed Assault support
 * Fix UI settings for Cold War Assault
