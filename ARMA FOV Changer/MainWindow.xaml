@@ -28,9 +28,9 @@
         <TextBox x:Name="DesiredFovLeftTextBox" HorizontalAlignment="Left" Height="23" Margin="130,179,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="48" Grid.Column="1"/>
         <TextBox x:Name="DesiredFovTopTextBox" HorizontalAlignment="Left" Height="23" Margin="130,152,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="48" Grid.Column="1"/>
         <Label x:Name="currentLabel" Content="Current" Height="27" VerticalAlignment="Top" Margin="28,121,136,0"/>
-        <Label x:Name="fovSliderLabel" Content="Desired FOV" Height="27" VerticalAlignment="Top" Margin="58,27,49,0" HorizontalContentAlignment="Center" Grid.Column="1"/>
-        <Label x:Name="fovLabel" Content="" Height="28" VerticalAlignment="Center" Margin="88,52,80,276" HorizontalAlignment="Center" Width="72" HorizontalContentAlignment="Center" Grid.Column="1"/>
-        <Slider x:Name="fovSlider" Value="90" Minimum="70" Maximum="120" Height="24" VerticalAlignment="Top" Margin="38,76,27,0" ValueChanged="fovSlider_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="1" TickPlacement="BottomRight" Foreground="#FF4D4D4D" Grid.Column="1" Background="{x:Null}" BorderBrush="{x:Null}"/>
+        <Label x:Name="fovSliderLabel" Content="Desired FOV" Height="27" VerticalAlignment="Top" Margin="64,27,43,0" HorizontalContentAlignment="Center" Grid.Column="1"/>
+        <Label x:Name="fovLabel" Content="" Height="28" VerticalAlignment="Center" Margin="94,52,74,276" HorizontalAlignment="Center" Width="72" HorizontalContentAlignment="Center" Grid.Column="1"/>
+        <Slider x:Name="fovSlider" Value="90" Minimum="65" Maximum="120" Height="24" VerticalAlignment="Top" Margin="38,76,18,0" ValueChanged="fovSlider_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="1" TickPlacement="BottomRight" Foreground="#FF4D4D4D" Grid.Column="1" Background="{x:Null}" BorderBrush="{x:Null}"/>
         <Label x:Name="aspectRatioLabel" Content="" Height="27" VerticalAlignment="Top" Margin="202,71,214,0" Grid.ColumnSpan="2"/>
         <Label x:Name="profileLabelLabel" Content="Profile:" HorizontalAlignment="Left" Margin="28,27,0,0" VerticalAlignment="Top"/>
         <Label x:Name="profileLabel" Content="" HorizontalAlignment="Left" Margin="79,28,0,0" VerticalAlignment="Top" Width="191" Grid.ColumnSpan="2"/>
