@@ -132,15 +132,21 @@ namespace ARMA_FOV_Changer
 
             // Get profile name from either parent directory or selected file.
             if (button == ColdWar)
+            {
                 profileName = profilePath.Substring(cwSlashIdx + 1, profNameLengthCW - 1);
+                fovSlider.IsEnabled = false;
+                fovSlider.ToolTip = "Disabled for Cold War Assault";
+                fovLabel.Content = null;
+            }
             else
+            {
                 profileName = profilePath.Substring(lastSlashIdx, profNameLength);
+            }
 
             // DayZ Standalone only uses vertical fov.
             if (button == DayZ)
             {
                 fovLeftLabel.IsEnabled = false;
-                fovLeftLabel_Copy.IsEnabled = false;
                 DesiredFovLeftTextBox.IsEnabled = false;
             }
 
@@ -153,9 +159,6 @@ namespace ARMA_FOV_Changer
             // Get and set default resolution info.
             widthTextBox.Text = SystemParameters.PrimaryScreenWidth.ToString();
             heightTextBox.Text = SystemParameters.PrimaryScreenHeight.ToString();
-
-            string fovTop = null;
-            string fovLeft = null;
 
             // Read entire file into an array of strings.
             // Get info we want from desired lines.
@@ -191,8 +194,8 @@ namespace ARMA_FOV_Changer
                 }
             }
 
-            fovTop = arrLine[fovTopLine];
-            fovLeft = arrLine[fovLeftLine];
+            string fovTop = arrLine[fovTopLine];
+            string fovLeft = arrLine[fovLeftLine];
 
             int eqIdx = fovTop.IndexOf("=") + 1;
             int fovLen = fovTop.IndexOf(";") - eqIdx;
@@ -202,7 +205,36 @@ namespace ARMA_FOV_Changer
             fovLen = fovLeft.IndexOf(";") - eqIdx;
             fovLeft = fovLeft.Substring(eqIdx, fovLen);
 
-            // Update Labels
+            if (button == ColdWar)
+            {
+                string uiTLX = arrLine[uiLine];
+                string uiTLY = arrLine[uiLine + 1];
+                string uiBRX = arrLine[uiLine + 2];
+                string uiBRY = arrLine[uiLine + 3];
+
+                eqIdx = uiTLX.IndexOf("=") + 1;
+                fovLen = uiTLX.IndexOf(";") - eqIdx;
+                uiTLX = uiTLX.Substring(eqIdx, fovLen);
+
+                eqIdx = uiTLY.IndexOf("=") + 1;
+                fovLen = uiTLY.IndexOf(";") - eqIdx;
+                uiTLY = uiTLY.Substring(eqIdx, fovLen);
+
+                eqIdx = uiBRX.IndexOf("=") + 1;
+                fovLen = uiBRX.IndexOf(";") - eqIdx;
+                uiBRX = uiBRX.Substring(eqIdx, fovLen);
+
+                eqIdx = uiBRY.IndexOf("=") + 1;
+                fovLen = uiBRY.IndexOf(";") - eqIdx;
+                uiBRY = uiBRY.Substring(eqIdx, fovLen);
+
+                uiTopLeftXLabel_Copy2.Content = uiTLX;
+                uiTopLeftYLabel_Copy2.Content = uiTLY;
+                uiBottomRightXLabel_Copy2.Content = uiBRX;
+                uiBottomRightYLabel_Copy2.Content = uiBRY;
+            }
+
+            // Update labels
             CurrentFovTopLabel.Content = fovTop;
             if (button != DayZ)
             {
@@ -284,10 +316,10 @@ namespace ARMA_FOV_Changer
             // Overwrite ui values if game is Cold War Assault.
             if (button == ColdWar)
             {
-                arrLine[uiLine] = "uiTopLeftX=" + uiTopLeftXLabel_Copy.Content + ";";
-                arrLine[uiLine + 1] = "uiTopLeftY=" + uiTopLeftYLabel_Copy.Content + ";";
-                arrLine[uiLine + 2] = "uiBottomRightX=" + uiBottomRightXLabel_Copy.Content + ";";
-                arrLine[uiLine + 3] = "uiBottomRightY=" + uiBottomRightYLabel_Copy.Content + ";";
+                arrLine[uiLine] = "uiTopLeftX=" + uiTopLeftXTextBox.Text + ";";
+                arrLine[uiLine + 1] = "uiTopLeftY=" + uiTopLeftYTextBox.Text + ";";
+                arrLine[uiLine + 2] = "uiBottomRightX=" + uiBottomRightXTextBox.Text + ";";
+                arrLine[uiLine + 3] = "uiBottomRightY=" + uiBottomRightYTextBox.Text + ";";
             }
 
             try
@@ -301,13 +333,18 @@ namespace ARMA_FOV_Changer
                 {
                     CurrentFovLeftLabel.Content = DesiredFovLeftTextBox.Text;
                 }
+
+                if (button == ColdWar)
+                {
+
+                }
             }
             catch (Exception m)
             {
                 MessageBox.Show(m.Message, "Exception!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
 
-            MessageBox.Show("FOV Updated!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Settings Updated!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         private void GitMenuItem_Click(object sender, RoutedEventArgs e)
         {
@@ -331,7 +368,10 @@ namespace ARMA_FOV_Changer
         private void refreshMath()
         {
             desiredFov = (int)fovSlider.Value;
-            fovLabel.Content = fovSlider.Value.ToString() + "°";
+            if (button != ColdWar)
+            {
+                fovLabel.Content = fovSlider.Value.ToString() + "°";
+            }
 
             // Find resolution and aspect ratio in saved ratios class.
             //var ratios = new FieldOfViews.Ratios();
@@ -360,11 +400,14 @@ namespace ARMA_FOV_Changer
             double uiTopLeftY = 0.0;
             double uiBottomRightX = 1.0;
             double uiBottomRightY = 1.0;
-
+            double cwFovTop = 0.75;
+            double cwFovLeft = 1.0;
+            
             // Set up aspect ratio variables and ui scaling based on http://ofp-faguss.com/files/ofp_aspect_ratio.pdf
             if (testRatio == 1.25)
             {
                 aspectRatio = "5:4";
+                cwFovTop = 0.8;
                 uiTopLeftY = 0.03125;
                 uiBottomRightY = 0.96875;
             }   
@@ -379,12 +422,14 @@ namespace ARMA_FOV_Changer
             else if (testRatio == 1.60)
             {
                 aspectRatio = "16:10";
+                cwFovLeft = 1.2;
                 uiTopLeftX = 0.083333;
                 uiBottomRightX = 0.916667;
             }
             else if (testRatio == 1.67)
             {
                 aspectRatio = "15:9";
+                cwFovLeft = 1.25;
                 uiTopLeftX = 0.1;
                 uiBottomRightX = 0.9;
             }
@@ -395,12 +440,14 @@ namespace ARMA_FOV_Changer
             else if (testRatio == 1.78)
             {
                 aspectRatio = "16:9";
+                cwFovLeft = 1.333333;
                 uiTopLeftX = 0.125;
                 uiBottomRightX = 0.875;
             }
             else if (/*testRatio == 1.85 ||*/ testRatio == 2.33 || testRatio == 2.37 || testRatio == 2.39)
             {
                 aspectRatio = "21:9";
+                cwFovLeft = 1.777778;
                 uiTopLeftX = 0.21875;
                 uiBottomRightX = 0.78125;
             }
@@ -409,6 +456,8 @@ namespace ARMA_FOV_Changer
             else if (testRatio == 3.75)
             {
                 aspectRatio = "15:4";
+                cwFovTop = 0.8;
+                cwFovLeft = 3.0;
                 uiTopLeftX = 0.333333;
                 uiTopLeftY = 0.03125;
                 uiBottomRightX = 0.666667;
@@ -417,30 +466,35 @@ namespace ARMA_FOV_Changer
             else if (testRatio == 4.00 || testRatio == 4.11)
             {
                 aspectRatio = "12:3";
+                cwFovLeft = 3.0;
                 uiTopLeftX = 0.333333;
                 uiBottomRightX = 0.666667;
             }  
             else if (testRatio == 4.80)
             {
                 aspectRatio = "48:10";
+                cwFovLeft = 3.6;
                 uiTopLeftX = 0.361111;
                 uiBottomRightX = 0.638889;
             }
             else if (testRatio == 5.00)
             {
+                aspectRatio = "45:9";
+                cwFovLeft = 3.75;
                 uiTopLeftX = 0.366667;
                 uiBottomRightX = 0.633333;
-                aspectRatio = "45:9";
             }
             else if (testRatio == 5.33)
             {
                 aspectRatio = "48:9";
+                cwFovLeft = 4.0;
                 uiTopLeftX = 0.375;
                 uiBottomRightX = 0.625;
             }
             else if (testRatio == 7.00 || testRatio == 7.11 || testRatio == 7.17)
             {
                 aspectRatio = "63:9";
+                cwFovLeft = 5.333333;
                 uiTopLeftX = 0.40625;
                 uiBottomRightX = 0.59375;
             }
@@ -454,47 +508,66 @@ namespace ARMA_FOV_Changer
             // If user chose Cold War Assault, set up respective ui labels.
             if (button == ColdWar)
             {
+                DesiredFovTopTextBox.Text = cwFovTop.ToString();
+                DesiredFovLeftTextBox.Text = cwFovLeft.ToString();
+
                 uiTopLeftXLabel.IsEnabled = true;
+                uiTopLeftXTextBox.IsEnabled = true;
                 uiTopLeftYLabel.IsEnabled = true;
+                uiTopLeftYTextBox.IsEnabled = true;
                 uiBottomRightXLabel.IsEnabled = true;
+                uiBottomRightXTextBox.IsEnabled = true;
                 uiBottomRightYLabel.IsEnabled = true;
+                uiBottomRightYTextBox.IsEnabled = true;
 
-                uiTopLeftXLabel_Copy.Content = uiTopLeftX.ToString();
-                uiTopLeftYLabel_Copy.Content = uiTopLeftY.ToString();
-                uiBottomRightXLabel_Copy.Content = uiBottomRightX.ToString();
-                uiBottomRightYLabel_Copy.Content = uiBottomRightY.ToString();
+                uiTopLeftXTextBox.Text = uiTopLeftX.ToString();
+                uiTopLeftYTextBox.Text = uiTopLeftY.ToString();
+                uiBottomRightXTextBox.Text = uiBottomRightX.ToString();
+                uiBottomRightYTextBox.Text = uiBottomRightY.ToString();
             }
+            else
+            {
+                // Desired fov to radians
+                double hfovRad = fovSlider.Value * (Math.PI / 180);
+                double hFoV = 2 * Math.Atan(Math.Tan(hfovRad / 2) * (Double.Parse(heightTextBox.Text) / Double.Parse(widthTextBox.Text)));
+                hFoV = Math.Ceiling(hFoV * 100) / 100;
 
-            // Desired fov to radians
-            double hfovRad = fovSlider.Value * (Math.PI / 180);
-            double hFoV = 2 * Math.Atan(Math.Tan(hfovRad / 2) * (Double.Parse(heightTextBox.Text) / Double.Parse(widthTextBox.Text)));
-            hFoV = Math.Ceiling(hFoV * 100) / 100;
+                DesiredFovTopTextBox.Text = hFoV.ToString();
 
-            DesiredFovTopTextBox.Text = hFoV.ToString();
+                double wFoV = hFoV / (Double.Parse(heightTextBox.Text) / nGCD);
+                wFoV = wFoV * (Double.Parse(widthTextBox.Text) / nGCD);
+                wFoV = Math.Floor(wFoV * 100) / 100;
 
-            double wFoV = hFoV / (Double.Parse(heightTextBox.Text) / nGCD);
-            wFoV = wFoV * (Double.Parse(widthTextBox.Text) / nGCD);
-            wFoV = Math.Floor(wFoV * 100) / 100;
-
-            DesiredFovLeftTextBox.Text = wFoV.ToString();
+                DesiredFovLeftTextBox.Text = wFoV.ToString();
+            }
         }
 
         private void ProfileMenuItem_Click(object sender, RoutedEventArgs e)
         {
+            fovSlider.IsEnabled = true;
+            fovSlider.ToolTip = null;
+
             CurrentFovLeftLabel.Content = "";
             fovLeftLabel.IsEnabled = true;
-            fovLeftLabel_Copy.IsEnabled = true;
             DesiredFovLeftTextBox.IsEnabled = true;
 
             uiTopLeftXLabel.IsEnabled = false;
+            uiTopLeftXTextBox.IsEnabled = false;
             uiTopLeftYLabel.IsEnabled = false;
+            uiTopLeftYTextBox.IsEnabled = false;
             uiBottomRightXLabel.IsEnabled = false;
+            uiBottomRightXTextBox.IsEnabled = false;
             uiBottomRightYLabel.IsEnabled = false;
+            uiBottomRightYTextBox.IsEnabled = false;
 
-            uiTopLeftXLabel_Copy.Content = "";
-            uiTopLeftYLabel_Copy.Content = "";
-            uiBottomRightXLabel_Copy.Content = "";
-            uiBottomRightYLabel_Copy.Content = "";
+            uiTopLeftXTextBox.Text = "";
+            uiTopLeftXLabel_Copy2.Content = "";
+            uiTopLeftYTextBox.Text = "";
+            uiTopLeftYLabel_Copy2.Content = "";
+            uiBottomRightXTextBox.Text = "";
+            uiBottomRightXLabel_Copy2.Content = "";
+            uiBottomRightYTextBox.Text = "";
+            uiBottomRightYLabel_Copy2.Content = "";
 
             LoadProfile();
             refreshMath();

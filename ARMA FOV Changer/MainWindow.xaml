@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ARMA_FOV_Changer"
         mc:Ignorable="d"
-        Title="Field of Views" Height="385.111" Width="478" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Visibility="Visible" Background="#FFF1F1F1" Icon="Eye-Visible-512.ico" BorderBrush="#FF494949">
+        Title="Field of Views" Height="445.111" Width="419" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Visibility="Visible" Background="#FFF1F1F1" Icon="Eye-Visible-512.ico" BorderBrush="#FF494949">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="29*"/>
@@ -24,36 +24,37 @@
                 </MenuItem>
             </Menu>
         </DockPanel>
-        <Separator Margin="10,102,10,228" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="DesiredFovLeftTextBox" HorizontalAlignment="Left" Height="23" Margin="130,179,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="48" Grid.Column="1"/>
-        <TextBox x:Name="DesiredFovTopTextBox" HorizontalAlignment="Left" Height="23" Margin="130,152,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="48" Grid.Column="1"/>
-        <Label x:Name="currentLabel" Content="Current" Height="27" VerticalAlignment="Top" Margin="28,121,136,0"/>
-        <Label x:Name="fovSliderLabel" Content="Desired FOV" Height="27" VerticalAlignment="Top" Margin="64,27,43,0" HorizontalContentAlignment="Center" Grid.Column="1"/>
-        <Label x:Name="fovLabel" Content="" Height="28" VerticalAlignment="Center" Margin="94,52,74,276" HorizontalAlignment="Center" Width="72" HorizontalContentAlignment="Center" Grid.Column="1"/>
-        <Slider x:Name="fovSlider" Value="90" Minimum="65" Maximum="120" Height="24" VerticalAlignment="Top" Margin="38,76,18,0" ValueChanged="fovSlider_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="1" TickPlacement="BottomRight" Foreground="#FF4D4D4D" Grid.Column="1" Background="{x:Null}" BorderBrush="{x:Null}"/>
-        <Label x:Name="aspectRatioLabel" Content="" Height="27" VerticalAlignment="Top" Margin="202,71,202,0" Grid.ColumnSpan="2" HorizontalContentAlignment="Center"/>
-        <Label x:Name="profileLabelLabel" Content="Profile:" HorizontalAlignment="Left" Margin="28,27,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="profileLabel" Content="" HorizontalAlignment="Left" Margin="79,28,0,0" VerticalAlignment="Top" Width="191" Grid.ColumnSpan="2"/>
-        <Label x:Name="resolutionLabel" Content="Resolution:" HorizontalAlignment="Left" Margin="28,70,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="widthTextBox" HorizontalAlignment="Left" Height="23" Margin="101,74,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="40" TextChanged="widthTextBox_TextChanged"/>
-        <Label x:Name="xlabel" Content="x" HorizontalAlignment="Left" Margin="141,71,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="heightTextBox" HorizontalAlignment="Left" Height="23" Margin="157,74,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="40" TextChanged="heightTextBox_TextChanged"/>
-        <Label x:Name="fovTopLabel" Content="FovTop:" HorizontalAlignment="Left" Margin="29,148,0,0" VerticalAlignment="Top" Width="55"/>
-        <Label x:Name="fovLeftLabel" Content="FovLeft:" HorizontalAlignment="Left" Margin="29,176,0,0" VerticalAlignment="Top" Width="55"/>
-        <Label x:Name="CurrentFovTopLabel" HorizontalAlignment="Left" Height="23" Margin="84,149,0,0" Content="" VerticalAlignment="Top" Width="99"/>
-        <Label x:Name="CurrentFovLeftLabel" HorizontalAlignment="Left" Height="23" Margin="84,177,0,0" Content="" VerticalAlignment="Top" Width="99"/>
-        <Button x:Name="saveButton" Content="Save" HorizontalAlignment="Left" Margin="10,297,0,0" VerticalAlignment="Top" Width="444" Click="saveButton_Click" Height="37" Background="#FFDADADA" Grid.ColumnSpan="2"/>
-        <Label x:Name="fovTopLabel_Copy" Content="FovTop:" HorizontalAlignment="Left" Margin="65,148,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-        <Label x:Name="fovLeftLabel_Copy" Content="FovLeft:" HorizontalAlignment="Left" Margin="65,176,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-        <Label x:Name="newLabel" Content="New" Height="27" VerticalAlignment="Top" Margin="65,122,124,0" Grid.Column="1"/>
-        <Label x:Name="uiTopLeftXLabel" Content="uiTopLeftX:" HorizontalAlignment="Left" Margin="30,230,0,0" VerticalAlignment="Top" Width="71" IsEnabled="False"/>
-        <Label x:Name="uiTopLeftYLabel" Content="uiTopLeftY:" HorizontalAlignment="Left" Margin="30,258,0,0" VerticalAlignment="Top" Width="71" IsEnabled="False"/>
-        <Label x:Name="uiTopLeftXLabel_Copy" HorizontalAlignment="Left" Height="23" Margin="101,231,0,0" Content="" VerticalAlignment="Top" Width="72"/>
-        <Label x:Name="uiTopLeftYLabel_Copy" HorizontalAlignment="Left" Height="23" Margin="101,258,0,0" Content="" VerticalAlignment="Top" Width="72"/>
-        <Label x:Name="uiBottomRightXLabel" Content="uiBottomRightX:" HorizontalAlignment="Left" Margin="21,230,0,0" VerticalAlignment="Top" Width="101" IsEnabled="False" Grid.Column="1"/>
-        <Label x:Name="uiBottomRightYLabel" Content="uiBottomRightY:" HorizontalAlignment="Left" Margin="21,258,0,0" VerticalAlignment="Top" Width="101" IsEnabled="False" Grid.Column="1"/>
-        <Label x:Name="uiBottomRightXLabel_Copy" HorizontalAlignment="Left" Height="23" Margin="122,231,0,0" Content="" VerticalAlignment="Top" Width="82" Grid.Column="1"/>
-        <Label x:Name="uiBottomRightYLabel_Copy" HorizontalAlignment="Left" Height="23" Margin="122,258,0,0" Content="" VerticalAlignment="Top" Width="82" Grid.Column="1"/>
-        <Separator Margin="10,205,10,122" Grid.ColumnSpan="2"/>
+        <Separator Margin="10,154,14,249" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="DesiredFovLeftTextBox" HorizontalAlignment="Left" Height="23" Margin="77,194,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="82" Grid.Column="1"/>
+        <TextBox x:Name="DesiredFovTopTextBox" HorizontalAlignment="Left" Height="23" Margin="77,167,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="82" Grid.Column="1"/>
+        <Label x:Name="currentLabel" Content="Current" Height="27" VerticalAlignment="Top" Margin="132,127,10,0"/>
+        <Label x:Name="fovSliderLabel" Content="Desired FOV" Height="27" VerticalAlignment="Top" Margin="62,26,45,0" HorizontalContentAlignment="Center" Grid.Column="1"/>
+        <Label x:Name="fovLabel" Content="" Height="28" VerticalAlignment="Center" Margin="78,55,60,333" HorizontalAlignment="Center" Width="72" HorizontalContentAlignment="Center" Grid.Column="1" FontSize="14"/>
+        <Slider x:Name="fovSlider" Value="90" Minimum="65" Maximum="165" Height="24" VerticalAlignment="Top" Margin="10,92,10,0" ValueChanged="fovSlider_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="1" TickPlacement="BottomRight" Foreground="#FF4D4D4D" Background="{x:Null}" BorderBrush="{x:Null}" Grid.ColumnSpan="2"/>
+        <Label x:Name="aspectRatioLabel" Content="" Height="27" VerticalAlignment="Top" Margin="0,53,162,0" HorizontalContentAlignment="Center" Grid.Column="1"/>
+        <Label x:Name="profileLabelLabel" Content="Profile:" HorizontalAlignment="Left" Margin="28,24,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="profileLabel" Content="" HorizontalAlignment="Left" Margin="79,25,0,0" VerticalAlignment="Top" Width="191" Grid.ColumnSpan="2"/>
+        <Label x:Name="resolutionLabel" Content="Resolution:" HorizontalAlignment="Left" Margin="28,52,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="widthTextBox" HorizontalAlignment="Left" Height="23" Margin="101,56,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="40" TextChanged="widthTextBox_TextChanged"/>
+        <Label x:Name="xlabel" Content="x" HorizontalAlignment="Left" Margin="141,53,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="heightTextBox" HorizontalAlignment="Left" Height="23" Margin="157,56,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="40" TextChanged="heightTextBox_TextChanged"/>
+        <Label x:Name="fovTopLabel" Content="FovTop:" HorizontalAlignment="Left" Margin="29,163,0,0" VerticalAlignment="Top" Width="55"/>
+        <Label x:Name="fovLeftLabel" Content="FovLeft:" HorizontalAlignment="Left" Margin="29,191,0,0" VerticalAlignment="Top" Width="55"/>
+        <Label x:Name="CurrentFovTopLabel" HorizontalAlignment="Left" Height="23" Margin="131,166,0,0" Content="" VerticalAlignment="Top" Width="90"/>
+        <Label x:Name="CurrentFovLeftLabel" HorizontalAlignment="Left" Height="23" Margin="131,194,0,0" Content="" VerticalAlignment="Top" Width="90"/>
+        <Button x:Name="saveButton" Content="Save" HorizontalAlignment="Left" Margin="10,355,0,0" VerticalAlignment="Top" Width="383" Click="saveButton_Click" Height="37" Background="#FFDADADA" Grid.ColumnSpan="2"/>
+        <Label x:Name="newLabel" Content="New" Height="27" VerticalAlignment="Top" Margin="77,127,87,0" Grid.Column="1"/>
+        <Label x:Name="uiTopLeftXLabel" Content="uiTopLeftX:" HorizontalAlignment="Left" Margin="29,228,0,0" VerticalAlignment="Top" Width="71" IsEnabled="False"/>
+        <Label x:Name="uiTopLeftYLabel" Content="uiTopLeftY:" HorizontalAlignment="Left" Margin="29,256,0,0" VerticalAlignment="Top" Width="71" IsEnabled="False"/>
+        <TextBox x:Name="uiTopLeftXTextBox" HorizontalAlignment="Left" Height="23" Margin="77,229,0,0" Text="" VerticalAlignment="Top" Width="82" Grid.Column="1" IsEnabled="False"/>
+        <TextBox x:Name="uiTopLeftYTextBox" HorizontalAlignment="Left" Height="23" Margin="77,256,0,0" Text="" VerticalAlignment="Top" Width="82" Grid.Column="1" IsEnabled="False"/>
+        <Label x:Name="uiBottomRightXLabel" Content="uiBottomRightX:" HorizontalAlignment="Left" Margin="29,293,0,0" VerticalAlignment="Top" Width="101" IsEnabled="False"/>
+        <Label x:Name="uiBottomRightYLabel" Content="uiBottomRightY:" HorizontalAlignment="Left" Margin="29,321,0,0" VerticalAlignment="Top" Width="101" IsEnabled="False"/>
+        <TextBox x:Name="uiBottomRightXTextBox" HorizontalAlignment="Left" Height="23" Margin="77,294,0,0" Text="" VerticalAlignment="Top" Width="82" Grid.Column="1" IsEnabled="False"/>
+        <TextBox x:Name="uiBottomRightYTextBox" HorizontalAlignment="Left" Height="23" Margin="77,321,0,0" Text="" VerticalAlignment="Top" Width="82" Grid.Column="1" IsEnabled="False"/>
+        <Label x:Name="uiTopLeftXLabel_Copy2" HorizontalAlignment="Left" Height="23" Margin="131,228,0,0" Content="" VerticalAlignment="Top" Width="90"/>
+        <Label x:Name="uiTopLeftYLabel_Copy2" HorizontalAlignment="Left" Height="23" Margin="131,256,0,0" Content="" VerticalAlignment="Top" Width="89"/>
+        <Label x:Name="uiBottomRightXLabel_Copy2" HorizontalAlignment="Left" Height="23" Margin="131,293,0,0" Content="" VerticalAlignment="Top" Width="86"/>
+        <Label x:Name="uiBottomRightYLabel_Copy2" HorizontalAlignment="Left" Height="23" Margin="131,321,0,0" Content="" VerticalAlignment="Top" Width="86"/>
     </Grid>
 </Window>
