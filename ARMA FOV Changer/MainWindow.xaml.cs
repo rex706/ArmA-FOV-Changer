@@ -136,7 +136,7 @@ namespace ARMA_FOV_Changer
                 profileName = profilePath.Substring(cwSlashIdx + 1, profNameLengthCW - 1);
                 fovSlider.IsEnabled = false;
                 fovSlider.ToolTip = "Disabled for Cold War Assault";
-                fovLabel.Content = null;
+                fovLabel.Content = "auto";
             }
             else
             {
@@ -244,66 +244,6 @@ namespace ARMA_FOV_Changer
             refreshMath();
         }
 
-        private static int GetGreatestCommonDivisor(int a, int b)
-        {
-            return b == 0 ? a : GetGreatestCommonDivisor(b, a % b);
-        }
-
-        private static async Task<int> CheckForUpdate()
-        {
-            //Nkosi Note: Always use asynchronous versions of network and IO methods.
-
-            //Check for version updates
-            var client = new HttpClient();
-            client.Timeout = new TimeSpan(0, 0, 0, 10);
-            try
-            {
-                // Open the text file using a stream reader
-                using (Stream stream = await client.GetStreamAsync("http://textuploader.com/d5ivh/raw"))
-                {
-                    System.Version current = Assembly.GetExecutingAssembly().GetName().Version;
-                    StreamReader reader = new StreamReader(stream);
-                    latest = System.Version.Parse(reader.ReadLine());
-
-                    List<string> newFiles = new List<string>();
-
-                    while (!reader.EndOfStream)
-                    {
-                        newFiles.Add(await reader.ReadLineAsync());
-                    }
-
-                    for (int i = 0; i < newFiles.Count; i++)
-                    {
-                        if (i == 0)
-                            fileParams += newFiles[i];
-                        else
-                            fileParams += " " + newFiles[i];
-                    }
-
-                    if (latest > current)
-                    {
-                        MessageBoxResult answer = MessageBox.Show("A new version of Field of Views is available!\n\nCurrent Version     " + current + "\nLatest Version     " + latest + "\n\nUpdate now?", "Field of Views Update", MessageBoxButton.YesNo, MessageBoxImage.Information);
-                        if (answer == MessageBoxResult.Yes)
-                        {
-                            //Update is available, and user wants to update. Requires app to close.
-                            return 2;
-                        }
-                        //Update is available, but user chose not to update just yet.
-                        return 1;
-                    }
-                }
-                //No update available.
-                return 0;
-            }
-            catch (Exception m)
-            {
-                //MessageBox.Show("Failed to check for update.\n" + m.Message,"Error", MessageBoxButtons.OK, MessageBoxImage.Error);
-                return 0;
-            }
-        }
-
-        #region Object Click Events
-
         private void saveButton_Click(object sender, RoutedEventArgs e)
         { 
             // Overwrite fov values.
@@ -345,24 +285,6 @@ namespace ARMA_FOV_Changer
             }
 
             MessageBox.Show("Settings Updated!", "Success!", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-        private void GitMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            Process.Start("https://github.com/rex706/ARMA-FOV-Changer/");
-        }
-        private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
-        #endregion
-
-        private void fovSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            if(heightTextBox != null && widthTextBox != null && heightTextBox.Text.Length > 2 && widthTextBox.Text.Length > 2)
-                refreshMath();
-            else
-                Console.WriteLine("Not enough input!");
         }
 
         private void refreshMath()
@@ -542,6 +464,59 @@ namespace ARMA_FOV_Changer
             }
         }
 
+        private static async Task<int> CheckForUpdate()
+        {
+            //Nkosi Note: Always use asynchronous versions of network and IO methods.
+
+            //Check for version updates
+            var client = new HttpClient();
+            client.Timeout = new TimeSpan(0, 0, 0, 10);
+            try
+            {
+                // Open the text file using a stream reader
+                using (Stream stream = await client.GetStreamAsync("http://textuploader.com/d5ivh/raw"))
+                {
+                    System.Version current = Assembly.GetExecutingAssembly().GetName().Version;
+                    StreamReader reader = new StreamReader(stream);
+                    latest = System.Version.Parse(reader.ReadLine());
+
+                    List<string> newFiles = new List<string>();
+
+                    while (!reader.EndOfStream)
+                    {
+                        newFiles.Add(await reader.ReadLineAsync());
+                    }
+
+                    for (int i = 0; i < newFiles.Count; i++)
+                    {
+                        if (i == 0)
+                            fileParams += newFiles[i];
+                        else
+                            fileParams += " " + newFiles[i];
+                    }
+
+                    if (latest > current)
+                    {
+                        MessageBoxResult answer = MessageBox.Show("A new version of Field of Views is available!\n\nCurrent Version     " + current + "\nLatest Version     " + latest + "\n\nUpdate now?", "Field of Views Update", MessageBoxButton.YesNo, MessageBoxImage.Information);
+                        if (answer == MessageBoxResult.Yes)
+                        {
+                            //Update is available, and user wants to update. Requires app to close.
+                            return 2;
+                        }
+                        //Update is available, but user chose not to update just yet.
+                        return 1;
+                    }
+                }
+                //No update available.
+                return 0;
+            }
+            catch (Exception m)
+            {
+                //MessageBox.Show("Failed to check for update.\n" + m.Message,"Error", MessageBoxButtons.OK, MessageBoxImage.Error);
+                return 0;
+            }
+        }
+
         private void ProfileMenuItem_Click(object sender, RoutedEventArgs e)
         {
             fovSlider.IsEnabled = true;
@@ -573,6 +548,14 @@ namespace ARMA_FOV_Changer
             refreshMath();
         }
 
+        private void fovSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (heightTextBox != null && widthTextBox != null && heightTextBox.Text.Length > 2 && widthTextBox.Text.Length > 2)
+                refreshMath();
+            else
+                Console.WriteLine("Not enough input!");
+        }
+
         private void widthTextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
             if (Regex.IsMatch(widthTextBox.Text, @"^\d+$") && widthTextBox.Text.Length > 2 && Regex.IsMatch(widthTextBox.Text, @"^\d+$") && heightTextBox.Text.Length > 2)
@@ -583,6 +566,21 @@ namespace ARMA_FOV_Changer
         {
             if (Regex.IsMatch(widthTextBox.Text, @"^\d+$") && heightTextBox.Text.Length > 2 && Regex.IsMatch(widthTextBox.Text, @"^\d+$") && widthTextBox.Text.Length > 2)
                 refreshMath();
+        }
+
+        private static int GetGreatestCommonDivisor(int a, int b)
+        {
+            return b == 0 ? a : GetGreatestCommonDivisor(b, a % b);
+        }
+
+        private void GitMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("https://github.com/rex706/ARMA-FOV-Changer/");
+        }
+
+        private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }
