@@ -523,6 +523,7 @@ namespace ARMA_FOV_Changer
 
         private void ProfileMenuItem_Click(object sender, RoutedEventArgs e)
         {
+            autoCheckBox.IsChecked = false;
             autoCheckBox.Visibility = Visibility.Hidden;
 
             fovSlider.IsEnabled = true;
