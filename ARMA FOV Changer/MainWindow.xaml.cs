@@ -134,9 +134,7 @@ namespace ARMA_FOV_Changer
             if (button == ColdWar)
             {
                 profileName = profilePath.Substring(cwSlashIdx + 1, profNameLengthCW - 1);
-                fovSlider.IsEnabled = false;
-                fovSlider.ToolTip = "Disabled for Cold War Assault";
-                fovLabel.Content = "auto";
+                autoCheckBox.Visibility = Visibility.Visible;
             }
             else
             {
@@ -276,7 +274,10 @@ namespace ARMA_FOV_Changer
 
                 if (button == ColdWar)
                 {
-
+                    uiTopLeftXLabel_Copy2.Content = uiTopLeftXTextBox.Text;
+                    uiTopLeftYLabel_Copy2.Content = uiTopLeftYTextBox.Text;
+                    uiBottomRightXLabel_Copy2.Content = uiBottomRightXTextBox.Text;
+                    uiBottomRightYLabel_Copy2.Content = uiBottomRightYTextBox.Text;
                 }
             }
             catch (Exception m)
@@ -290,7 +291,7 @@ namespace ARMA_FOV_Changer
         private void refreshMath()
         {
             desiredFov = (int)fovSlider.Value;
-            if (button != ColdWar)
+            if (autoCheckBox.IsChecked == false)
             {
                 fovLabel.Content = fovSlider.Value.ToString() + "°";
             }
@@ -430,9 +431,6 @@ namespace ARMA_FOV_Changer
             // If user chose Cold War Assault, set up respective ui labels.
             if (button == ColdWar)
             {
-                DesiredFovTopTextBox.Text = cwFovTop.ToString();
-                DesiredFovLeftTextBox.Text = cwFovLeft.ToString();
-
                 uiTopLeftXLabel.IsEnabled = true;
                 uiTopLeftXTextBox.IsEnabled = true;
                 uiTopLeftYLabel.IsEnabled = true;
@@ -446,6 +444,12 @@ namespace ARMA_FOV_Changer
                 uiTopLeftYTextBox.Text = uiTopLeftY.ToString();
                 uiBottomRightXTextBox.Text = uiBottomRightX.ToString();
                 uiBottomRightYTextBox.Text = uiBottomRightY.ToString();
+            }
+
+            if (autoCheckBox.IsChecked == true)
+            {
+                DesiredFovTopTextBox.Text = cwFovTop.ToString();
+                DesiredFovLeftTextBox.Text = cwFovLeft.ToString();
             }
             else
             {
@@ -519,6 +523,8 @@ namespace ARMA_FOV_Changer
 
         private void ProfileMenuItem_Click(object sender, RoutedEventArgs e)
         {
+            autoCheckBox.Visibility = Visibility.Hidden;
+
             fovSlider.IsEnabled = true;
             fovSlider.ToolTip = null;
 
@@ -581,6 +587,19 @@ namespace ARMA_FOV_Changer
         private void ExitMenuItem_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void autoCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            fovSlider.IsEnabled = false;
+            fovLabel.Content = "Auto";
+            refreshMath();
+        }
+
+        private void autoCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            fovSlider.IsEnabled = true;
+            refreshMath();
         }
     }
 }

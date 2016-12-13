@@ -56,5 +56,6 @@
         <Label x:Name="uiTopLeftYLabel_Copy2" HorizontalAlignment="Left" Height="23" Margin="131,256,0,0" Content="" VerticalAlignment="Top" Width="89"/>
         <Label x:Name="uiBottomRightXLabel_Copy2" HorizontalAlignment="Left" Height="23" Margin="131,293,0,0" Content="" VerticalAlignment="Top" Width="86"/>
         <Label x:Name="uiBottomRightYLabel_Copy2" HorizontalAlignment="Left" Height="23" Margin="131,321,0,0" Content="" VerticalAlignment="Top" Width="86"/>
+        <CheckBox x:Name="autoCheckBox" Content="Auto" HorizontalAlignment="Left" Margin="32,133,0,0" VerticalAlignment="Top" Checked="autoCheckBox_Checked" Unchecked="autoCheckBox_Unchecked" Visibility="Hidden" ToolTip="Autofill Fov settings"/>
     </Grid>
 </Window>
