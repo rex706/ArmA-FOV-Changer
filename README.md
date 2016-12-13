@@ -1,9 +1,9 @@
 # Field of Views
 
-![alt tag](http://i.imgur.com/TiOgsy3.png)  ![alt tag](http://i.imgur.com/PYKDe3D.png)
+![alt tag](http://i.imgur.com/TiOgsy3.png)  ![alt tag](http://i.imgur.com/w4VoVVI.png)
 
 
-[**Download**](https://github.com/rex706/ArmA-FOV-Changer/releases/download/v1.2.1.1/Field.of.Views.zip)
+[**Download**](https://github.com/rex706/ArmA-FOV-Changer/releases/download/v1.2.1.1/FieldofViews_1.2.1.1.zip)
 
 **Features**
 
