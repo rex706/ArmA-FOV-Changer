@@ -3,7 +3,7 @@
 ![alt tag](http://i.imgur.com/TiOgsy3.png)  ![alt tag](http://i.imgur.com/PYKDe3D.png)
 
 
-[**Download**](https://github.com/rex706/ArmA-FOV-Changer/releases/download/v1.2.1.0/Field.of.Views.zip)
+[**Download**](https://github.com/rex706/ArmA-FOV-Changer/releases/download/v1.2.1.1/Field.of.Views.zip)
 
 **Features**
 
@@ -14,7 +14,11 @@
 
 **CHANGELOG**
 
-Latest: 1.2.1.0
+Latest: 1.2.1.1
+
+* Add auto mode toggle for Cold War Assault
+
+1.2.1.0
 
 * Autofill fov info for Cold War Assault
 * Adjust fov slider maximum
