@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ARMA_FOV_Changer"
         mc:Ignorable="d"
-        Title="Field of Views" Height="445.111" Width="419" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Visibility="Visible" Background="#FFF1F1F1" Icon="Eye-Visible-512.ico" BorderBrush="#FF494949">
+        Title="Field of Views" Height="445" Width="419" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen" Visibility="Visible" Background="#FFF1F1F1" Icon="Eye-Visible-512.ico" BorderBrush="#FF494949">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="29*"/>
@@ -58,6 +58,6 @@
         <CheckBox x:Name="autoCheckBox" Content="Auto" HorizontalAlignment="Left" Margin="32,133,0,0" VerticalAlignment="Top" Checked="autoCheckBox_Checked" Unchecked="autoCheckBox_Unchecked" Visibility="Hidden" ToolTip="Autofill Fov settings"/>
         <ScrollBar x:Name="scrollBar" Grid.Column="1" HorizontalAlignment="Left" Margin="75,48,0,0" VerticalAlignment="Top" Height="36" Width="18" ValueChanged="scrollBar_ValueChanged" Minimum="0" Maximum="1000" Value="425"/>
         <Label x:Name="degreeLabel" Content="°" Height="20" VerticalAlignment="Top" Margin="131,49,58,0" Grid.Column="1" FontSize="14"/>
-        <TextBox x:Name="fovTextBox" HorizontalAlignment="Left" Height="23" Margin="94,56,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="40" TextChanged="fovTextBox_TextChanged" Grid.Column="1" HorizontalContentAlignment="Center"/>
+        <TextBox x:Name="fovTextBox" HorizontalAlignment="Left" Height="23" Margin="94,56,0,0" TextWrapping="Wrap" Text="90" VerticalAlignment="Top" Width="40" TextChanged="fovTextBox_TextChanged" Grid.Column="1" HorizontalContentAlignment="Center"/>
     </Grid>
 </Window>

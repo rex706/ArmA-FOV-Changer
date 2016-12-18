@@ -38,6 +38,8 @@ namespace ARMA_FOV_Changer
         private static int DayZ = 3;
         private static int ArmAAA = 4;
 
+        private static bool getValueFromTextBox = false;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -290,26 +292,25 @@ namespace ARMA_FOV_Changer
 
         private void refreshMath()
         {
-            desiredFov = (int)fovSlider.Value;
-            if (autoCheckBox.IsChecked == false)
+            if (getValueFromTextBox)
             {
-                fovTextBox.Text = fovSlider.Value.ToString();
+                try
+                {
+                    desiredFov = Int32.Parse(fovTextBox.Text);
+                }
+                catch
+                {
+                    fovTextBox.Text = "90";
+                    desiredFov = 90;
+                }
+
+                getValueFromTextBox = false;
             }
-
-            // Find resolution and aspect ratio in saved ratios class.
-            //var ratios = new FieldOfViews.Ratios();
-            //var newset = ratios.ratioSet();
-
-            //foreach (FieldOfViews.AspectRatio ratio in newset)
-            //{
-            //    if (ratio.width == Int32.Parse(widthTextBox.Text) && ratio.height == Int32.Parse(heightTextBox.Text))
-            //    {
-            //        aspectRatio = ratio.ratio;
-            //        ratiofound = true;
-            //        break;
-            //    }
-            //}
-
+            else
+            {
+                desiredFov = (int)fovSlider.Value;
+            }
+            
             // Calculate aspect ratio.
             string aspectRatio = "";
             int nGCD = GetGreatestCommonDivisor(Int32.Parse(heightTextBox.Text), Int32.Parse(widthTextBox.Text));
@@ -454,7 +455,7 @@ namespace ARMA_FOV_Changer
             else
             {
                 // Desired fov to radians
-                double hfovRad = fovSlider.Value * (Math.PI / 180);
+                double hfovRad = desiredFov * (Math.PI / 180);
                 double hFoV = 2 * Math.Atan(Math.Tan(hfovRad / 2) * (Double.Parse(heightTextBox.Text) / Double.Parse(widthTextBox.Text)));
                 hFoV = Math.Ceiling(hFoV * 100) / 100;
 
@@ -560,7 +561,7 @@ namespace ARMA_FOV_Changer
         private void fovSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             if (heightTextBox != null && widthTextBox != null && heightTextBox.Text.Length > 2 && widthTextBox.Text.Length > 2)
-                refreshMath();
+                fovTextBox.Text = fovSlider.Value.ToString();
             else
                 Console.WriteLine("Not enough input!");
         }
@@ -597,7 +598,6 @@ namespace ARMA_FOV_Changer
             scrollBar.IsEnabled = false;
             fovSlider.IsEnabled = false;
             degreeLabel.Visibility = Visibility.Hidden;
-            fovTextBox.Text = "Auto";
             fovTextBox.IsEnabled = false;
             refreshMath();
         }
@@ -613,17 +613,31 @@ namespace ARMA_FOV_Changer
 
         private void scrollBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            int value = 0;
+
+            try
+            {
+                value = Int32.Parse(fovTextBox.Text);
+            }
+            catch
+            {
+                return;
+            }
+
             if (e.NewValue < e.OldValue)
-                fovSlider.Value += 1;
+                value += 1;
+                
             else if (e.NewValue > e.OldValue)
-                fovSlider.Value -= 1;
+                value -= 1;
+
+            fovTextBox.Text = value.ToString();
         }
 
         private void fovTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            int value;
+            int value = 0;
 
-            if (fovTextBox.Text.Length >= 2)
+            if (heightTextBox.Text.Length > 2 && widthTextBox.Text.Length > 2 && fovTextBox.Text.Length >= 2)
             {
                 try
                 {
@@ -634,18 +648,16 @@ namespace ARMA_FOV_Changer
                     value = 90;
                 }
 
-                if (value >= 65 && value <= 165)
+                if (value >= 65 && value <= 165 && value != fovSlider.Value)
                 {
                     fovSlider.Value = value;
                 }
-                else if (value < 65)
+                else
                 {
-                    fovSlider.Value = 65;
+                    getValueFromTextBox = true;
                 }
-                else if (value > 165)
-                {
-                    fovSlider.Value = 165;
-                }
+
+                refreshMath();
             }
         }
     }
