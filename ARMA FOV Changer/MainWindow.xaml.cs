@@ -14,7 +14,7 @@ namespace ARMA_FOV_Changer
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    
+
     public partial class MainWindow : Window
     {
         private static Version latest;
@@ -97,7 +97,7 @@ namespace ARMA_FOV_Changer
 
             LoadProfile();
         }
-    
+
         private void LoadProfile()
         {
             // Open splash window for game selection.
@@ -122,7 +122,7 @@ namespace ARMA_FOV_Changer
             // Get profile name from file path string.
             int lastSlashIdx = profilePath.LastIndexOf("\\") + 1;
             int profNameLength = profilePath.LastIndexOf(".") - lastSlashIdx;
-            
+
             int cwSlashIdx = lastSlashIdx > 0 ? profilePath.LastIndexOf("\\", lastSlashIdx - 2) : -1;
             int profNameLengthCW = profilePath.LastIndexOf("\\") - cwSlashIdx;
 
@@ -243,7 +243,7 @@ namespace ARMA_FOV_Changer
         }
 
         private void saveButton_Click(object sender, RoutedEventArgs e)
-        { 
+        {
             // Overwrite fov values.
             arrLine[fovTopLine] = fovstring + "=" + DesiredFovTopTextBox.Text + ";";
             if (button != DayZ)
@@ -293,7 +293,7 @@ namespace ARMA_FOV_Changer
             desiredFov = (int)fovSlider.Value;
             if (autoCheckBox.IsChecked == false)
             {
-                fovLabel.Content = fovSlider.Value.ToString() + "°";
+                fovTextBox.Text = fovSlider.Value.ToString();
             }
 
             // Find resolution and aspect ratio in saved ratios class.
@@ -325,7 +325,7 @@ namespace ARMA_FOV_Changer
             double uiBottomRightY = 1.0;
             double cwFovTop = 0.75;
             double cwFovLeft = 1.0;
-            
+
             // Set up aspect ratio variables and ui scaling based on http://ofp-faguss.com/files/ofp_aspect_ratio.pdf
             if (testRatio == 1.25)
             {
@@ -333,7 +333,7 @@ namespace ARMA_FOV_Changer
                 cwFovTop = 0.8;
                 uiTopLeftY = 0.03125;
                 uiBottomRightY = 0.96875;
-            }   
+            }
             else if (testRatio == 1.33 || testRatio == 1.37)
             {
                 aspectRatio = "4:3";
@@ -341,7 +341,7 @@ namespace ARMA_FOV_Changer
             else if (testRatio == 1.50)
             {
                 aspectRatio = "3:2";
-            }   
+            }
             else if (testRatio == 1.60)
             {
                 aspectRatio = "16:10";
@@ -359,7 +359,7 @@ namespace ARMA_FOV_Changer
             else if (testRatio == 1.71)
             {
                 aspectRatio = "128:75";
-            } 
+            }
             else if (testRatio == 1.78)
             {
                 aspectRatio = "16:9";
@@ -392,7 +392,7 @@ namespace ARMA_FOV_Changer
                 cwFovLeft = 3.0;
                 uiTopLeftX = 0.333333;
                 uiBottomRightX = 0.666667;
-            }  
+            }
             else if (testRatio == 4.80)
             {
                 aspectRatio = "48:10";
@@ -526,6 +526,8 @@ namespace ARMA_FOV_Changer
             autoCheckBox.IsChecked = false;
             autoCheckBox.Visibility = Visibility.Hidden;
 
+            scrollBar.IsEnabled = true;
+            fovTextBox.IsEnabled = true;
             fovSlider.IsEnabled = true;
             fovSlider.ToolTip = null;
 
@@ -592,15 +594,59 @@ namespace ARMA_FOV_Changer
 
         private void autoCheckBox_Checked(object sender, RoutedEventArgs e)
         {
+            scrollBar.IsEnabled = false;
             fovSlider.IsEnabled = false;
-            fovLabel.Content = "Auto";
+            degreeLabel.Visibility = Visibility.Hidden;
+            fovTextBox.Text = "Auto";
+            fovTextBox.IsEnabled = false;
             refreshMath();
         }
 
         private void autoCheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
+            scrollBar.IsEnabled = true;
             fovSlider.IsEnabled = true;
+            degreeLabel.Visibility = Visibility.Visible;
+            fovTextBox.IsEnabled = true;
             refreshMath();
+        }
+
+        private void scrollBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (e.NewValue < e.OldValue)
+                fovSlider.Value += 1;
+            else if (e.NewValue > e.OldValue)
+                fovSlider.Value -= 1;
+        }
+
+        private void fovTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            int value;
+
+            if (fovTextBox.Text.Length >= 2)
+            {
+                try
+                {
+                    value = Int32.Parse(fovTextBox.Text);
+                }
+                catch
+                {
+                    value = 90;
+                }
+
+                if (value >= 65 && value <= 165)
+                {
+                    fovSlider.Value = value;
+                }
+                else if (value < 65)
+                {
+                    fovSlider.Value = 65;
+                }
+                else if (value > 165)
+                {
+                    fovSlider.Value = 165;
+                }
+            }
         }
     }
 }

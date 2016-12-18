@@ -28,9 +28,8 @@
         <TextBox x:Name="DesiredFovLeftTextBox" HorizontalAlignment="Left" Height="23" Margin="77,198,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="82" Grid.Column="1"/>
         <TextBox x:Name="DesiredFovTopTextBox" HorizontalAlignment="Left" Height="23" Margin="77,171,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="82" Grid.Column="1"/>
         <Label x:Name="currentLabel" Content="Current" Height="27" VerticalAlignment="Top" Margin="132,127,10,0"/>
-        <Label x:Name="fovSliderLabel" Content="Desired FOV" Height="27" VerticalAlignment="Top" Margin="62,26,45,0" HorizontalContentAlignment="Center" Grid.Column="1"/>
-        <Label x:Name="fovLabel" Content="" Height="28" VerticalAlignment="Center" Margin="78,55,60,333" HorizontalAlignment="Center" Width="72" HorizontalContentAlignment="Center" Grid.Column="1" FontSize="14"/>
-        <Slider x:Name="fovSlider" Value="90" Minimum="65" Maximum="165" Height="24" VerticalAlignment="Top" Margin="10,92,10,0" ValueChanged="fovSlider_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="1" TickPlacement="BottomRight" Foreground="#FF4D4D4D" Background="{x:Null}" BorderBrush="{x:Null}" Grid.ColumnSpan="2"/>
+        <Label x:Name="fovSliderLabel" Content="Desired FOV" Height="27" VerticalAlignment="Top" Margin="65,24,42,0" HorizontalContentAlignment="Center" Grid.Column="1"/>
+        <Slider x:Name="fovSlider" Value="91" Minimum="65" Maximum="165" Height="24" VerticalAlignment="Top" Margin="10,92,10,0" ValueChanged="fovSlider_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="1" TickPlacement="BottomRight" Foreground="#FF4D4D4D" Background="{x:Null}" BorderBrush="{x:Null}" Grid.ColumnSpan="2"/>
         <Label x:Name="aspectRatioLabel" Content="" Height="27" VerticalAlignment="Top" Margin="0,53,162,0" HorizontalContentAlignment="Center" Grid.Column="1"/>
         <Label x:Name="profileLabelLabel" Content="Profile:" HorizontalAlignment="Left" Margin="28,24,0,0" VerticalAlignment="Top"/>
         <Label x:Name="profileLabel" Content="" HorizontalAlignment="Left" Margin="79,25,0,0" VerticalAlignment="Top" Width="191" Grid.ColumnSpan="2"/>
@@ -57,5 +56,8 @@
         <Label x:Name="uiBottomRightXLabel_Copy2" HorizontalAlignment="Left" Height="23" Margin="131,293,0,0" Content="" VerticalAlignment="Top" Width="86"/>
         <Label x:Name="uiBottomRightYLabel_Copy2" HorizontalAlignment="Left" Height="23" Margin="131,321,0,0" Content="" VerticalAlignment="Top" Width="86"/>
         <CheckBox x:Name="autoCheckBox" Content="Auto" HorizontalAlignment="Left" Margin="32,133,0,0" VerticalAlignment="Top" Checked="autoCheckBox_Checked" Unchecked="autoCheckBox_Unchecked" Visibility="Hidden" ToolTip="Autofill Fov settings"/>
+        <ScrollBar x:Name="scrollBar" Grid.Column="1" HorizontalAlignment="Left" Margin="75,48,0,0" VerticalAlignment="Top" Height="36" Width="18" ValueChanged="scrollBar_ValueChanged" Minimum="0" Maximum="1000" Value="425"/>
+        <Label x:Name="degreeLabel" Content="°" Height="20" VerticalAlignment="Top" Margin="131,49,58,0" Grid.Column="1" FontSize="14"/>
+        <TextBox x:Name="fovTextBox" HorizontalAlignment="Left" Height="23" Margin="94,56,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="40" TextChanged="fovTextBox_TextChanged" Grid.Column="1" HorizontalContentAlignment="Center"/>
     </Grid>
 </Window>
