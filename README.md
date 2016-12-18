@@ -1,9 +1,9 @@
 # Field of Views
 
-![alt tag](http://i.imgur.com/TiOgsy3.png)  ![alt tag](http://i.imgur.com/w4VoVVI.png)
+![alt tag](http://i.imgur.com/TiOgsy3.png)  ![alt tag](http://i.imgur.com/NyLum8C.png)
 
 
-[**Download**](https://github.com/rex706/ArmA-FOV-Changer/releases/download/v1.2.1.1/FieldofViews_1.2.1.1.zip)
+[**Download**](https://github.com/rex706/ArmA-FOV-Changer/releases/download/v1.2.2.0/Field.of.Views.v1.2.2.0.zip)
 
 **Features**
 
@@ -14,7 +14,11 @@
 
 **CHANGELOG**
 
-Latest: 1.2.1.1
+Latest: 1.2.2.0
+
+* Better desired fov control
+
+1.2.1.1
 
 * Add auto mode toggle for Cold War Assault
 
