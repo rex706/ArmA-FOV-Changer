@@ -3,7 +3,7 @@
 ![alt tag](http://i.imgur.com/TiOgsy3.png)  ![alt tag](http://i.imgur.com/NyLum8C.png)
 
 
-[**Download**](https://github.com/rex706/ArmA-FOV-Changer/releases/download/v1.2.2.0/Field.of.Views.v1.2.2.0.zip)
+[**Download**](https://github.com/rex706/ArmA-FOV-Changer/releases/download/v1.2.2.1/Field.of.Views.v1.2.2.1.zip)
 
 **Features**
 
@@ -14,7 +14,14 @@
 
 **CHANGELOG**
 
-Latest: 1.2.2.0
+Latest: 1.2.2.1
+
+* Fix fov text box value entry
+	* Only numbers allowed (defaults to 90 otherwise)
+	* Values less than 10 are ignored
+* Allow user to enter values out of slider bounds
+
+1.2.2.0
 
 * Better desired fov control
 
