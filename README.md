@@ -18,8 +18,8 @@ Latest: 1.2.2.1
 
 * Fix fov text box value entry
 	* Only numbers allowed (defaults to 90 otherwise)
-	* Values less than 10 are ignored
 * Allow user to enter values out of slider bounds
+	* Values less than 10 are ignored
 
 1.2.2.0
 
